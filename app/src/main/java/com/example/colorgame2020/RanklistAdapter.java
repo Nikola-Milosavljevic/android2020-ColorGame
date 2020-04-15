@@ -12,11 +12,9 @@ import java.util.ArrayList;
 
 public class RanklistAdapter extends BaseAdapter {
 
-    public Context context;
     public ArrayList<PlayerScore> playerScores;
 
-    public RanklistAdapter(Context context, ArrayList<PlayerScore> playerScores) {
-        this.context = context;
+    public RanklistAdapter(ArrayList<PlayerScore> playerScores) {
         this.playerScores = playerScores;
     }
 
@@ -40,13 +38,13 @@ public class RanklistAdapter extends BaseAdapter {
 
         if (convertView == null) {
             LayoutInflater layoutInflater
-                    = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            convertView = layoutInflater.inflate(R.layout.ranklist_item, null, false);
+                    = (LayoutInflater) parent.getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            convertView = layoutInflater.inflate(R.layout.ranklist_item, parent, false);
         }
 
-        TextView username_view = (TextView) convertView.findViewById(R.id.text_view_ranklist_item_username);
-        TextView difficulty_view = (TextView) convertView.findViewById(R.id.text_view_ranklist_item_difficulty);
-        TextView score_view = (TextView) convertView.findViewById(R.id.text_view_ranklist_item_score);
+        TextView username_view = convertView.findViewById(R.id.text_view_ranklist_item_username);
+        TextView difficulty_view = convertView.findViewById(R.id.text_view_ranklist_item_difficulty);
+        TextView score_view = convertView.findViewById(R.id.text_view_ranklist_item_score);
 
         username_view.setText(playerScores.get(position).getUsername());
         username_view.setTextColor(Color.BLUE);

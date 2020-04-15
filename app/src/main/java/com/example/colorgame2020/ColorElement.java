@@ -10,11 +10,8 @@ public class ColorElement { // red u listi
         Color.RED, Color.BLUE, Color.YELLOW, Color.GREEN, Color.GRAY};
 
     private int value;
-    private ArrayList<Integer> colors = new ArrayList<Integer>();
+    private ArrayList<Integer> colors;
     private int currInd = 0;
-
-    public ColorElement() {
-    }
 
     public ColorElement(int value, ArrayList<Integer> colors) {
         this.value = value;

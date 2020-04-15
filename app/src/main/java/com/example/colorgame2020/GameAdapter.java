@@ -10,18 +10,13 @@ import android.widget.LinearLayout;
 import android.widget.Space;
 import android.widget.TextView;
 
-import androidx.appcompat.widget.LinearLayoutCompat;
-
 import java.util.ArrayList;
-import java.util.Random;
 
 public class GameAdapter extends BaseAdapter {
 
-    public Context context;
-    public ArrayList<ColorElement> elements = new ArrayList<ColorElement>();
+    public ArrayList<ColorElement> elements;
 
-    public GameAdapter(Context context, ArrayList<ColorElement> elements) {
-        this.context = context;
+    public GameAdapter(ArrayList<ColorElement> elements) {
         this.elements = elements;
     }
 
@@ -45,15 +40,17 @@ public class GameAdapter extends BaseAdapter {
 
         if (convertView == null) {
             LayoutInflater layoutInflater
-                    = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            convertView = layoutInflater.inflate(R.layout.colorlist_item, null, false);
+                    = (LayoutInflater) parent.getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            convertView = layoutInflater.inflate(R.layout.colorlist_item, parent, false);
         }
 
         ColorElement element = elements.get(position);
         TextView textView = convertView.findViewById(R.id.list_element_value);
         textView.setText(String.valueOf(element.getValue()));
 
-        LinearLayout linearLayout = (LinearLayout) convertView.findViewById(R.id.colorlist_layout);
+        Context context = parent.getContext();
+
+        LinearLayout linearLayout = convertView.findViewById(R.id.colorlist_layout);
 
         LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(
                 (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 20,
@@ -65,7 +62,7 @@ public class GameAdapter extends BaseAdapter {
         linearLayout.removeAllViewsInLayout();
         int viewNumber = element.getColorsSize();
 
-        TextView views[] = new TextView[viewNumber];
+        TextView[] views = new TextView[viewNumber];
         for (int i = 0; i < viewNumber; i++) {
             views[i] = new TextView(context);
             views[i].setLayoutParams(lp);

@@ -22,18 +22,20 @@ public class MainActivity extends AppCompatActivity {
     public static final String USERNAME = "username";
     public static final String DIFFICULTY = "difficulty";
     public static final String SCORE = "score";
-    public static final int REQUEST_GAME = 1;
-    public RanklistAdapter ranklistAdapter;
-    public ArrayList<PlayerScore> playerScores = new ArrayList<PlayerScore>();
-    public Spinner spinner;
-    public EditText editText;
+
+    private static final int REQUEST_GAME = 1;
+
+    private RanklistAdapter ranklistAdapter;
+    private ArrayList<PlayerScore> playerScores = new ArrayList<PlayerScore>();
+    private Spinner spinner;
+    private EditText editText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        spinner = (Spinner) findViewById(R.id.spinner_connect_num);
+        spinner = findViewById(R.id.spinner_connect_num);
         ArrayAdapter<CharSequence> spinnerAdapter
                 = ArrayAdapter.createFromResource(this, R.array.difficulties,
                 android.R.layout.simple_spinner_item);
@@ -55,7 +57,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         ListView rankListView = findViewById(R.id.list_view_ranklist);
-        ranklistAdapter = new RanklistAdapter(this, playerScores);
+        ranklistAdapter = new RanklistAdapter(playerScores);
         rankListView.setAdapter(ranklistAdapter);
         rankListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -66,9 +68,9 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        editText = (EditText) findViewById(R.id.edit_text_username);
+        editText = findViewById(R.id.edit_text_username);
 
-        Button startGameButton = (Button) findViewById(R.id.button_start_game);
+        Button startGameButton = findViewById(R.id.button_start_game);
         startGameButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

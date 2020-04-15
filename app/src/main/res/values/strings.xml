@@ -1,8 +1,7 @@
 <resources>
     <string name="app_name">ColorGame2020</string>
     <string name="text_view_enter_username">Enter username:</string>
-    <string name="add_user">Add user</string>
-    <string name="text_view_choose_connect_num">Choose dificulty</string>
+    <string name="text_view_choose_connect_num">Choose difficulty</string>
     <string name="start_game">Start game</string>
     <string name="button_abort_game">Abort game</string>
     <string name="button_add_row">Add new row</string>

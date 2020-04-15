@@ -32,8 +32,8 @@ public class GameActivity extends AppCompatActivity {
             difficulty = intent.getIntExtra(MainActivity.DIFFICULTY, 3);
         }
 
-        gameAdapter = new GameAdapter(this, getStartList());
-        ListView listView = (ListView) findViewById(R.id.list_view_gamelist);
+        gameAdapter = new GameAdapter(getStartList());
+        ListView listView = findViewById(R.id.list_view_gamelist);
         listView.setAdapter(gameAdapter);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -42,7 +42,7 @@ public class GameActivity extends AppCompatActivity {
             }
         });
 
-        Button addButton = (Button) findViewById(R.id.button_add_row);
+        Button addButton = findViewById(R.id.button_add_row);
         addButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -52,7 +52,7 @@ public class GameActivity extends AppCompatActivity {
             }
         });
 
-        Button abortButton = (Button) findViewById(R.id.button_abort_game);
+        Button abortButton = findViewById(R.id.button_abort_game);
         abortButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -83,7 +83,7 @@ public class GameActivity extends AppCompatActivity {
     }
 
     private void updateScore(int value) {
-        TextView textView = (TextView) findViewById(R.id.text_view_score);
+        TextView textView = findViewById(R.id.text_view_score);
         curr_score = curr_score + value;
         textView.setText(String.valueOf(curr_score));
     }
@@ -105,9 +105,7 @@ public class GameActivity extends AppCompatActivity {
                 j--;
                 if (j - i + 1 >= difficulty) {
                     found = true;
-                    for (int k = j; k >= i; k--) {
-                        list.remove(k);
-                    }
+                    list.subList(i, j + 1).clear();
                     break;
                 }
             }
